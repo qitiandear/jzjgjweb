@@ -1,0 +1,79 @@
+[ 2018-07-31T09:09:37+08:00 ] 172.66.66.168 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2] mysqli::mysqli(): (HY000/1049): Unknown database 'jianxin' D:\phpStudy\WWW\jianxin\library\ThinkPHP\Library\Think\Db\Driver\Mysqli.class.php 第 44 行.
+ERR: Unknown database 'jianxin'
+
+[ 2018-07-31T09:44:22+08:00 ] 172.66.66.168 /admin.php/Login/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.073004s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.073004s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.013001s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.013001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-07-31T09:44:26+08:00 ] 172.66.66.168 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: select id,title,date,imagepath from articles where typeId=19 and state=8 order by id desc limit 0,5 [ RunTime:0.003001s ]
+SQL: SHOW COLUMNS FROM `bless` [ RunTime:0.001000s ]
+SQL: SELECT * FROM `bless` WHERE ( typeId=1 )  [ RunTime:0.000000s ]
+SQL: SELECT * FROM `bless` WHERE ( typeId=2 )  [ RunTime:0.000000s ]
+SQL: SELECT * FROM `bless` WHERE ( typeId=3 )  [ RunTime:0.000000s ]
+SQL: SELECT * FROM `bless` WHERE ( typeId=4 )  [ RunTime:0.000000s ]
+SQL: SELECT * FROM `bless` WHERE ( typeId=5 )  [ RunTime:0.001000s ]
+SQL: select a.id,a.username,count(b.userId) as count from admin a,articles b where a.id = b.userId and b.state=8 and a.state<9 and dateandtime > '2018-01-01 00:00:00' GROUP by b.userId  order by count desc limit 0,6 [ RunTime:0.002000s ]
+SQL: select * from articles where typeId=18 and state=8 order by id desc limit 0,1 [ RunTime:0.001000s ]
+SQL: select id,title,date from articles where typeId=14 and state=8 order by id desc limit 0,10 [ RunTime:0.000000s ]
+SQL: select id,title,date from articles where typeId=15 and state=8 order by id desc limit 0,5 [ RunTime:0.002000s ]
+SQL: select dateandtime,DATE_ADD(dateandtime,INTERVAL 1 week) as time,id,title,date,imagepath,content from articles where typeId=16 and state=8 order by id desc limit 0,5 [ RunTime:0.002000s ]
+SQL: select dateandtime,DATE_ADD(dateandtime,INTERVAL 1 week) as time,id,title,date from articles where typeId=17 and state=8 order by id desc limit 0,5 [ RunTime:0.001000s ]
+SQL: select dateandtime,DATE_ADD(dateandtime,INTERVAL 1 week) as time,id,title,date,imagepath from articles where typeId=1 and state=8 order by id desc limit 0,9 [ RunTime:0.001000s ]
+SQL: select dateandtime,DATE_ADD(dateandtime,INTERVAL 1 week) as time,id,title,date from articles where typeId=2 and state=8 order by id desc limit 0,8 [ RunTime:0.001000s ]
+SQL: select dateandtime,DATE_ADD(dateandtime,INTERVAL 1 week) as time,id,title,date from articles where typeId=3 and state=8 order by id desc limit 0,8 [ RunTime:0.001001s ]
+SQL: select dateandtime,DATE_ADD(dateandtime,INTERVAL 1 week) as time,id,title,date from articles where typeId=4 and state=8 order by id desc limit 0,8 [ RunTime:0.001000s ]
+SQL: select dateandtime,DATE_ADD(dateandtime,INTERVAL 1 week) as time,id,title,date from articles where typeId=5 and state=8 order by id desc limit 0,8 [ RunTime:0.002000s ]
+SQL: select dateandtime,DATE_ADD(dateandtime,INTERVAL 1 week) as time,id,title,date from articles where typeId=6 and state=8 order by id desc limit 0,8 [ RunTime:0.002000s ]
+SQL: select dateandtime,DATE_ADD(dateandtime,INTERVAL 1 week) as time,id,title,date from articles where typeId=7 and state=8 order by id desc limit 0,8 [ RunTime:0.002000s ]
+SQL: select dateandtime,DATE_ADD(dateandtime,INTERVAL 1 week) as time,id,title,date from articles where typeId=8 and state=8 order by id desc limit 0,8 [ RunTime:0.002000s ]
+SQL: select dateandtime,DATE_ADD(dateandtime,INTERVAL 1 week) as time,id,title,date from articles where typeId=9 and state=8 order by id desc limit 0,8 [ RunTime:0.001000s ]
+SQL: select dateandtime,DATE_ADD(dateandtime,INTERVAL 1 week) as time,id,title,date from articles where typeId=10 and state=8 order by id desc limit 0,8 [ RunTime:0.001000s ]
+SQL: select dateandtime,DATE_ADD(dateandtime,INTERVAL 1 week) as time,id,title,date from articles where typeId=11 and state=8 order by id desc limit 0,8 [ RunTime:0.001000s ]
+SQL: select dateandtime,DATE_ADD(dateandtime,INTERVAL 1 week) as time,id,title,date from articles where typeId=12 and state=8 order by id desc limit 0,8 [ RunTime:0.002000s ]
+SQL: select dateandtime,DATE_ADD(dateandtime,INTERVAL 1 week) as time,id,title,date from articles where typeId=13 and state=8 order by id desc limit 0,8 [ RunTime:0.001000s ]
+SQL: select * from articles where typeId=21 order by id desc limit 1 [ RunTime:0.001000s ]
+SQL: select * from articles where typeId=10 order by id desc limit 1 [ RunTime:0.000000s ]
+SQL: select * from articles where typeId=10 order by id desc [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.088005s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.088005s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+

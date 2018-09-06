@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>晋中公安监管信息网</title>
+	<script src="__ROOT__/library/js/jquery-1.4.js"></script>
+	<link rel="stylesheet" href="__ROOT__/public/css/tqindex.css">
+	<script type="text/javascript">
+	    function contshow(){
+	    	var r = $("#vlist").css('display');
+	    	if (r=='block') {
+				$('#vlist').css('display','none');
+	    	}else{
+				$('#vlist').css('display','block');
+	    	}
+		}
+		function videosrc(str,str2){
+			$("#addv").attr('src',str);
+			$("#addt").text(str2);
+			$("#vlist").hide();
+		}
+	</script>
+</head>
+<body>
+	<div id="logo">
+		<img src="__ROOT__/public/vivo/8.gif" alt="">
+	</div>
+	<ul id="nav">
+		<li><a href="__APP__">首页</a></li>
+		<li><a href="__APP__/Listtype/index/typeId/1">监管要闻</a></li>
+		<li><a href="__APP__/Listtype/index/typeId/2">通知通报</a></li>
+		<li><a href="__APP__/Listtype/index/typeId/3">监所动态</a></li>
+		<li><a href="__APP__/Listtype/index/typeId/4">领导聚集</a></li>
+		<li><a href="__APP__/Listtype/index/typeId/5">重点工作</a></li>
+		<li style="border: none;"><a href="__APP__/Listtype/index/typeId/6">协助破案</a></li>
+	</ul>
+	<div id="dx">
+		<img src="__ROOT__/public/vivo/banner9.jpg">
+	</div>
+	<div id="box">
+		<div id="boxleft">
+			<div class="pack">
+				<div class="cont">
+					<div id="map">
+						<ul class="img">
+							<volist	name="jgyws" id="v">
+								<li><a href="__APP__/News/index/id/{$v.id}"><img src="__ROOT__/public/{$v.imagepath}" alt=""></a></li>
+							</volist>
+						</ul>
+						<div class="mapTitle">
+							<ul class="title">
+								<volist	name="jgyws" id="v">
+								<li><a href="__APP__/News/index/id/{$v.id}">{$v.title}</a></li>
+							</volist>
+							</ul>
+							<ul class="rbox">
+								<li class="box"></li>
+								<li class="box"></li>
+								<li class="box"></li>
+								<li class="box"></li>
+								<li class="box"></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="cont">
+					<div class="hd">
+						<h3>监管要闻</h3>
+						<span><a href="__APP__/Listtype/index/typeId/1">更多>></a></span>
+					</div>
+					<ul class="artlist">
+						<volist name="jgyw" id="v">
+							<li>
+								<div class="arttl"><a href="__APP__/News/index/id/{$v.id}">{$v.title|msubstr=0,15}</a></div>
+								<if condition="$date elt $v['time']">
+									<img src="__ROOT__/public/vivo/new3.gif" alt="">
+								</if>
+								<span>{$v.dateandtime|msubstrda=0,10}</span>
+							</li>
+						</volist>
+					</ul>
+				</div>
+			</div>
+			<div id="onduty">
+				<h3>今日值班</h3>
+				<div id="drty">
+					<volist name="bgt" id="v">
+						{$v.content}
+					</volist>
+				</div>
+			</div>
+			<ul id="funbox">
+				<li onclick="location.href='http://10.1.1.88:8080/jcxxv'"><div class="i bg1"></div>公安监所基础信息管理系统</li>
+				<li onclick="location.href='http://10.94.60.175:8009/web'"><div class="i bg2"></div>违法犯罪人员信息系统</li>
+				<li onclick="location.href='__APP__//Listtype/index/typeId/20'" style="line-height: 60px;"><div class="i bg3"></div>全市巡查通报</li>
+				<li onclick="location.href='http://zyfw.ga/portal/'" style="line-height: 60px;"><div class="i bg4"></div>公安云搜索</li>
+			</ul>
+			<div class="pack">
+				<div class="cont">
+					<div class="ht">
+						<h4 class="bb bshow" id="h1">通知通报</h4>
+						<h4 class="bb bhide" id="h2">领导聚集</h4>
+						<div class="supply" id="m1"><a href="__APP__/Listtype/index/typeId/2">更多>></a></div>
+						<div class="supply" id="m2"><a href="__APP__/Listtype/index/typeId/4">更多>></a></div>
+					</div>
+					<ul class="artlist" id="al1">
+						<volist name="tztb" id="v">
+							<li>
+								<div class="arttl"><a href="__APP__/News/index/id/{$v.id}">{$v.title|msubstr=0,15}</a></div>
+								<if condition="$date elt $v['time']">
+									<img src="__ROOT__/public/vivo/new3.gif" alt="">
+								</if>
+								<span>{$v.dateandtime|msubstrda=0,10}</span>
+							</li>
+						</volist>
+					</ul>
+					<ul class="artlist" id="al2">
+						<volist name="gzjb" id="v">
+							<li>
+								<div class="arttl"><a href="__APP__/News/index/id/{$v.id}">{$v.title|msubstr=0,15}</a></div>
+								<if condition="$date elt $v['time']">
+									<img src="__ROOT__/public/vivo/new3.gif" alt="">
+								</if>
+								<span>{$v.dateandtime|msubstrda=0,10}</span>
+							</li>
+						</volist>
+					</ul>
+				</div>
+				<div class="cont">
+					<div class="ht">
+						<h4 class="bb bshow" id="h3">监所动态</h4>
+						<h4 class="bb bhide" id="h4">重点工作</h4>
+						<div class="supply" id="m3"><a href="__APP__/Listtype/index/typeId/3">更多>></a></div>
+						<div class="supply" id="m4"><a href="__APP__/Listtype/index/typeId/5">更多>></a></div>
+					</div>
+					<ul class="artlist" id="al3">
+						<volist name="jsdt" id="v">
+							<li>
+								<div class="arttl"><a href="__APP__/News/index/id/{$v.id}">{$v.title|msubstr=0,15}</a></div>
+								<if condition="$date elt $v['time']">
+									<img src="__ROOT__/public/vivo/new3.gif" alt="">
+								</if>
+								<span>{$v.dateandtime|msubstrda=0,10}</span>
+							</li>
+						</volist>
+					</ul>
+					<ul class="artlist" id="al4">
+						<volist name="jlsmdhj" id="v">
+							<li>
+								<div class="arttl"><a href="__APP__/News/index/id/{$v.id}">{$v.title|msubstr=0,15}</a></div>
+								<if condition="$date elt $v['time']">
+									<img src="__ROOT__/public/vivo/new3.gif" alt="">
+								</if>
+								<span>{$v.dateandtime|msubstrda=0,10}</span>
+							</li>
+						</volist>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="boxright">
+			<div id="video">
+				<volist name="video" id="v">
+					<h3 id='addt'>{$v.title}</h3><img src="__ROOT__/public/pic/menu.png" id="mbtn" onclick="contshow()">
+					<video id="addv" src="__ROOT__/public/video/{$v.content}" controls="controls"></video>
+				</volist>
+				<ul id="vlist">
+					<volist name="vlist" id="v" key="k">
+						<li onclick="videosrc('__ROOT__/public/video/{$v.content}','{$v.title}')">{$v.title}</li>
+					</volist>
+				</ul>
+			</div>
+
+			<div class="twocolumn">
+				<div class="ht">
+					<h4 class="bb bshow" id="h5">信息排名</h4>
+					<h4 class="bb bhide" id="h6" style="width: 130px;">每日巡查通报</h4>
+					<div class="supply" id="m5" style="width: 130px;"><a href="__APP__/Xxpm">更多>></a></div>
+					<div class="supply" id="m6" style="width: 130px;"><a href="__APP__/Listtype/index/typeId/14" >更多>></a></div>
+				</div>
+				<ul class="artlist" id="al5">
+					<div class="pm fz">排名</div>
+					<div class="dw fz">单位</div>
+					<div class="cy fz">采用</div>
+					<volist name="xxpm" id="v" key="k">
+						<li>
+							<div class="pm red">{$k}</div>
+							<div class="dw">{$v.username}</div>
+							<div class="cy red">{$v.count}</div>
+						</li>
+					</volist>
+				</ul>
+				<ul class="artlist mrxc" id="al6">
+					<volist name="mrxctb" id="v">
+						<li>{$v.title}</li>
+					</volist>
+				</ul>
+			</div>
+			<div class="imgsow">
+				<div class="word">监管之星</div>
+				<ul class="imgbox">
+					<volist name="zxgz" id="k">
+						<li onclick="location.href='__APP__/News/index/id/{$k.id}'"><img src="__ROOT__/public/{$k.imagepath}" alt="">{$k.title}</li>
+					</volist>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div id="xdzd">
+		<img src="__ROOT__/public/vivo/5.gif" alt="">
+	</div>
+	<div id="box2">
+		<div class="box2left">
+			<div class="cont">
+				<div class="hd">
+					<h3>党建工作</h3>
+					<span><a href="__APP__/Listtype/index/typeId/8">更多>></a></span>
+				</div>
+				<ul class="artlist">
+					<volist name="ylws" id="v">
+						<li>
+							<div class="arttl"><a href="__APP__/News/index/id/{$v.id}">{$v.title|msubstr=0,15}</a></div>
+							<if condition="$date elt $v['time']">
+								<img src="__ROOT__/public/vivo/new3.gif" alt="">
+							</if>
+							<span>{$v.dateandtime|msubstrda=0,10}</span>
+						</li>
+					</volist>
+				</ul>
+			</div>
+			<div class="cont">
+				<div class="hd">
+					<h3>监管风采</h3>
+					<span><a href="__APP__/Listtype/index/typeId/9">更多>></a></span>
+				</div>
+				<ul class="artlist">
+					<volist name="aqdpc" id="v">
+						<li>
+							<div class="arttl"><a href="__APP__/News/index/id/{$v.id}">{$v.title|msubstr=0,15}</a></div>
+							<if condition="$date elt $v['time']">
+								<img src="__ROOT__/public/vivo/new3.gif" alt="">
+							</if>
+							<span>{$v.dateandtime|msubstrda=0,10}</span>
+						</li>
+					</volist>
+				</ul>
+			</div>
+			<div class="cont">
+				<div class="hd">
+					<h3>政策法规</h3>
+					<span><a href="__APP__/Listtype/index/typeId/12">更多>></a></span>
+				</div>
+				<ul class="artlist">
+					<volist name="jgdx" id="v">
+						<li>
+							<div class="arttl"><a href="__APP__/News/index/id/{$v.id}">{$v.title|msubstr=0,15}</a></div>
+							<if condition="$date elt $v['time']">
+								<img src="__ROOT__/public/vivo/new3.gif" alt="">
+							</if>
+							<span>{$v.dateandtime|msubstrda=0,10}</span>
+						</li>
+					</volist>
+				</ul>
+			</div>
+			<div class="cont">
+				<div class="hd">
+					<h3>它山之石</h3>
+					<span><a href="__APP__/Listtype/index/typeId/13">更多>></a></span>
+				</div>
+				<ul class="artlist">
+					<volist name="tszs" id="v">
+						<li>
+							<div class="arttl"><a href="__APP__/News/index/id/{$v.id}">{$v.title|msubstr=0,15}</a></div>
+							<if condition="$date elt $v['time']">
+								<img src="__ROOT__/public/vivo/new3.gif" alt="">
+							</if>
+							<span>{$v.dateandtime|msubstrda=0,10}</span>
+						</li>
+					</volist>
+				</ul>
+			</div>
+		</div>
+		<div class="box2right">
+			<div class="cont2 htbox">
+				<div class="ht" style="border-bottom: 1px dotted #333;height: 37px;">
+					<h3 style="line-height: 37px;text-align: center;">晋中市公安监管工作“11458”总体思路</h3>
+					<volist name="art1" id="v">
+						<div class="text">{$v.content}</div>
+					</volist>
+				</div>
+				<ul class="media">
+					<li onclick="location.href='__ROOT__/admin.php'" style="background: url(__ROOT__/public/pic/icons1.png) no-repeat 15% -2362px #f19e23;">网上投稿</li>
+					<li onmousemove="chenges();" style="background: url(__ROOT__/public/pic/icons1.png) 15% -2492px no-repeat #459ddf;">信息查询</li>
+					<li onclick="location.href='__APP__/Listtype/index/typeId/15'" style="background: url(__ROOT__/public/pic/icons1.png) 15% -1337px no-repeat #4bc83e;">监管通讯录</li>
+					<li onclick="location.href='__APP__/Serach/index'" style="background: url(__ROOT__/public/pic/icons1.png) 15% -2202px no-repeat #d34805;">站内搜索</li>
+				</ul>
+				<div  id="img1" class="tit" onmousemove="chenges();"  >
+					<ul class="mei_list"  onmouseout="chengesd();">
+						<li><a href="http://10.1.1.88:8080/jcxxv/">全国公安监所基础信息管理系统</a></li>
+						<li><a href="http://10.94.60.175:8009/web">违法犯罪人员信息系统</a></li>
+						<li><a href="http://ztry.xz.ga">全国在逃人员信息系统</a></li>
+						<li><a href="http://www.jgzd.sx/">全市巡查通报</a></li>
+						<li><a href="http://zyfw.ga/portal/">公安云搜索</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="cont2" style="margin-top: 100px;">
+				<div class="hd">
+					<h3 style="width: 175px;">重点工作成绩公布</h3>
+					<span><a href="__APP__/Listtype/index/typeId/17">更多>></a></span>
+				</div>
+				<ul class="artlist">
+					<volist name="dundianbangdu" id="v">
+						<li>
+							<div><a href="__APP__/News/index/id/{$v.id}">{$v.title|msubstr=0,20}</a></div>
+						</li>
+					</volist>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div id="footer">
+		<ul id="link">
+			<li id="link1">友情链接</li>
+			<li class="lli">
+				<select name="select" id="select" onchange="s_click(this)">
+					<option selected>全国监管导航</option>
+					<volist name="arrdd" id="v">
+						<option value="{$v.imagepath}">{$v.title}</option>
+					</volist>
+				</select>
+			</li>
+			<li class="lli">
+				<select name="" id="" onchange="s_click(this)">
+					<option selected>省内监管导航</option>
+					<volist name="arraa" id="v">
+						<option value="{$v.imagepath}">{$v.title}</option>
+					</volist>
+				</select>
+			</li>
+			<li class="lli">
+				<select name="" id="" onchange="s_click(this)">
+					<option selected>市内监管导航</option>
+					<volist name="arrbb" id="v">
+						<option value="{$v.imagepath}">{$v.title}</option>
+					</volist>
+				</select>
+			</li>
+			<li class="lli">
+				<select name="" id="" onchange="s_click(this)">
+					<option selected>省内市局导航</option>
+					<volist name="arrcc" id="v">
+						<option value="{$v.imagepath}">{$v.title}</option>
+					</volist>
+				</select>
+			</li>
+			<li class="lli">
+				<select name="" id="" onchange="s_click(this)">
+					<option selected>推荐监管链接</option>
+					<volist name="arree" id="v">
+						<option value="{$v.imagepath}">{$v.title}</option>
+					</volist>
+				</select>
+			</li>
+		</ul>
+		<div id="copy">版权所有：晋中市公安监管支队 <a href="http://10.97.83.200:8080/web">进入旧版</a></div>
+	</div>
+	<script>
+		var theUA = window.navigator.userAgent.toLowerCase();
+		if ((theUA.match(/msie\s\d+/) && theUA.match(/msie\s\d+/)[0]) || (theUA.match(/trident\s?\d+/) && theUA.match(/trident\s?\d+/)[0])) {
+		    var ieVersion = theUA.match(/msie\s\d+/)[0].match(/\d+/)[0] || theUA.match(/trident\s?\d+/)[0];
+		    if (ieVersion < 9) {
+		        window.location.href('__APP__/Old/index');
+		    }
+		}
+	</script>
+	<script src="__ROOT__/library/js/new.js"></script>
+</body>
+</html>

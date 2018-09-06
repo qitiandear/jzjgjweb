@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>晋中公安监管信息系统</title>
+<style>
+	body{
+		background-image:url('__ROOT__/public/images/320.jpg');
+		background-attachment: fixed;
+		background-repeat: no-repeat;
+		
+}
+</style>
+</head>
+<body>
+	<h3 align="center">当前操作：修改系统分类</h3>
+	<form action="__ROOT__/admin.php/Trend/usaved" method="post">
+		<table>
+			<tr>
+				<td>分类名</td>
+				<td>
+				<input type="hidden" name="id" value="{$Think.get.id}"/>
+				<input type="text" name="tname" value="{$arr.tname}"/>
+				</td>
+			</tr>
+			<tr>
+				<td>父分类：</td>
+				<td>
+					<select name="fid" id="fid" >
+						<option value="0">顶级</option>
+						{$str}
+					</select>
+				</td>
+			</tr>
+				<tr>
+		<td>链接地址</td>
+		<td><input type="text" name="attach" placeholder="链接地址" value="{$arr.attach}"></td>
+	</tr>
+			<tr>
+				<td colspan="2"> <input type="submit" value="修改"/></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

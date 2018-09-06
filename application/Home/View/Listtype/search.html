@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>晋中公安监管信息网</title>
+	<link rel="stylesheet" href="__ROOT__/public/css/quchumr.css">
+	<link rel="stylesheet" href="__ROOT__/public/css/index.css">
+	<link rel="stylesheet" href="__ROOT__/public/css/reset.css">
+	<script src="__ROOT__/library/js/jquery.min.js"></script>
+	<script src="__ROOT__/library/js/index.js"></script>
+	<style>
+.ui-popup-guanbi{height:20px;width: 20px;margin-top:-10px;margin-left:390px;
+		background:url('__ROOT__/public/images/close21.png');cursor:pointer;}
+		
+		.key{
+			float:right;
+			margin:-2.8% 0.5% 0px 0px;
+			background:url(__ROOT__/public/images/sousuo.png) no-repeat;
+			border:hidden;
+			width:165px;
+			    height: 25px;
+		}
+	</style>
+</head>
+<body>
+	<include file="Public:header"/>
+	<!-- 二级页面内容部分 -->
+	<div class="lrc_neirongqu">
+		<div class="lrc_neirongqunei">
+			<div class="lrc_neirongquleft">
+				<div class="left">
+				    <volist name="listtype" id="v">
+				    <div class="lrc_xlxx">
+				        <div class="lrc_div2" >
+				          <div class="lrc_jbsz"></div>
+				        <a href="__APP__/Listtype/index/typeId/{$v.typeId}">{$v.typeName}</a>
+				        </div>
+				        <div class="lrc_div3">
+				          <ul class="lrc_div3left">
+				          <volist name="v.types" id="vv">
+				          	<if condition="$vv.typeName != NULL ">
+				          		<li class="mopowu"><a href="__APP__/Listtype/index/typeId/{$vv.typeId}">{$vv.typeName}</a></li>
+				          		</if>
+				         </volist>
+				          </ul>
+				        </div>
+				    </div> 
+   					</volist>
+				</div> 
+			</div>
+			<div class="lrc_neirongquright">
+				<div class="lrc_tzlm">
+					<b style="margin-left:5px">{$type.typeName}</b>
+					<span style="margin-left:200px"><!-- 部门: --></span>
+					<!-- <select name="" id="">
+						<option value="">所有部门</option>
+						<option value="">一部门</option>
+						<option value="">二部门</option>
+						<option value="">三部门</option>
+					</select> -->
+					<img src="__ROOT__/public/images/lrc_dw.png" alt="" style="margin-left:300px">
+					<a href="__APP__">首页</a> 
+				</div>
+				<div class="jinchaneir">
+					<div class="jinchaneirnei">
+						<volist name="info" id="v">
+						<div class="lrc_onelist">
+							<!-- <span class="ie6sanjiao"></span> -->
+							<a href="__APP__/News/index/id/{$v.id}" class="ie6neir"> {$v.title}</a>				<span class="ie6date">{$v.date}</span>
+						</div>
+						</volist>
+					</div>
+				</div>
+			</div>
+			<div style="clear:both"></div>
+		</div>
+	</div>
+	<!-- 分页部分开始 -->
+	<div class="pagelist">
+		
+		
+			{$pageList}
+		
+	</div>
+	<!-- 分页部分结束 -->
+	<!-- 二级页面底部部分 -->
+	<div class="ejymdb">
+		Copyright@2010 晋中城区公安信息网 All Rights Reserved.
+	</div>
+	<!-- 晋中城区分局二级页面结束 -->
+</body>
+</html>

@@ -1,0 +1,939 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta charset="utf-8">
+<title>晋中公安监管信息网</title>
+<link href="__ROOT__/public/css/index_css.css" rel="stylesheet">
+<script src="__ROOT__/library/js/jquery.js"></script>
+<script src="__ROOT__/library/js/jquery.min.js"></script>
+<script>
+setTimeout("focus();window.showModelessDialog('__APP__/Index/contion.html','','scroll:1;dialogleft:10;dialogtop:50;status:1;help:1;toolbar=1;resizable:1;dialogWidth:700px;dialogHeight:500px')",0)
+</script>
+</head>
+	<style type="text/css">
+	.img_new{
+		float: left;
+		height: 12px;
+		margin-top: 8px;
+		width: 20px;
+		margin-right:20px;
+	}
+				.mei_list{
+					min-width:100px;
+					padding:0 5px;
+					font-size:13px;
+					color:#fff;
+					list-style-type:none;
+					position:absolute;
+					top:195px;
+					left:-192px;
+					background-color:#0589d3;
+					float: left;
+				}
+				.mei_list li{
+					height:40px;
+					line-height:40px;
+					text-align:left;
+					
+						
+					
+				}
+				.mei_list li a{color:#fff;}
+				.tit{display:none
+					;}
+				.tit1{display:block
+					;}
+
+			</style>
+<body>
+<div class="banner">
+	<img src="__ROOT__/public/images/top.png">
+</div>
+<div class="nav">
+
+<ul>
+	<li><a href="__APP__">首页</a></li>
+	<li><a href="__APP__/Listtype/index/typeId/1">监管要闻</a></li>
+	<li><a href="__APP__/Listtype/index/typeId/2">通知通报</a></li>
+	<li><a href="__APP__/Listtype/index/typeId/3">监所动态</a></li>
+	<li><a href="__APP__/Listtype/index/typeId/4">工作简报</a></li>
+	<li><a href="__APP__/Listtype/index/typeId/5">重点工作</a></li>
+	<li style="border: none;"><a href="__APP__/Listtype/index/typeId/6">深挖犯罪</a></li>
+	<div class="clearfix"></div>
+</ul>
+	
+	
+</div>
+<div class="banner">
+	<img src="__ROOT__/public/images/112233.jpg">
+</div>
+<div class="index_oneleft">
+	<div class="onelefttop">
+			</a>
+			<div class="clearfix"></div>
+	</div>
+					<!-- 左右切换轮播图 -->
+					<div class="oneleftbottom">
+						<div class="bannerbox">
+							<div class="innerbanner" style="margin-top: 15px">
+								<volist	name="jgyws" id="v">
+								<a href="__APP__/News/index/id/{$v.id}" class="banneritem" style="z-index:2">
+								<if condition="$v.imagepath != NULL ">
+									<img src="__ROOT__/public/{$v.imagepath}" alt="" style="border: 0">
+									<div class="banner_news">{$v.title}</div>
+								</if>
+								</a>
+							</volist>
+
+							</div>
+							<div class="btnbox">
+								<div class="btn active"></div>
+								<div class="btn"></div>
+								<div class="btn"></div>
+								<div class="btn"></div>
+								<div class="btn"></div>
+							</div>
+							<div class="prev arrow">
+								&lt;
+							</div>
+							<div class="next arrow">
+								&gt;
+							</div>
+						</div>
+			</div>
+			
+			
+			<script>
+	var allbtn=$(".btn")
+    var allimg=$(".banneritem")
+    var nowbtn=$(".btn:first")
+    var nowimg=$(".banneritem:first")
+    var t=setInterval(banner,2000)
+    var num=0;
+    var z=2;
+    function banner(){
+        num++;
+        if(num==allbtn.length){
+            num=0;
+        }
+        allbtn.filter(nowbtn).removeClass("active").end().eq(num).addClass("active")
+        nowimg.animate({left:-398},500,"linear").parent().children().eq(num).css({left:398,zIndex:z++}).animate({left:0},500,"linear",function(){
+            flag=true;
+        })
+        nowbtn=allbtn.eq(num)
+        nowimg=allimg.eq(num)
+    }
+    $(".bannerbox").hover(function(){
+        clearInterval(t)
+        // $(".arrow").show(300)
+        $(".arrow").fadeIn(300)
+    },function(){
+        t=setInterval(banner,2000)
+        // $(".arrow").hide(300)
+        $(".arrow").fadeOut(300)
+    })
+    var flag=true;
+    $(".next").click(function(){
+        if(flag){
+            flag=false;
+            banner()
+        }
+    }).mousedown(function(e){
+        e.preventDefault()
+        e.returnValue=false;   //阻止浏览器默认行为
+    })
+    var flag2=true;
+    $(".prev").click(function(){
+        if(flag2){
+            flag2=false;
+            num--;
+            if(num==-1){
+                num=allbtn.length-1;
+            }
+            allbtn.filter(nowbtn).removeClass("active").end().eq(num).addClass("active")
+            nowimg.animate({left:398},500,"linear")
+                .parent().children().eq(num).css({left:-398,zIndex:z--})
+                .animate({left:0},500,"linear",function(){
+                    flag2=true;
+                })
+            nowbtn=allbtn.eq(num)
+            nowimg=allimg.eq(num)
+        }
+    }).mousedown(function(e){
+        e.preventDefault()
+        e.returnValue=false;   //阻止浏览器默认行为
+    })
+    allbtn.click(function(){
+        nowbtn.removeClass("active");
+        $(this).addClass("active")
+        nowbtn=$(this);
+        var now=nowimg.index();  //当前显示的图片
+        var next=$(this).index();  //将要点击 要显示的图片
+        if(next>now){
+            nowimg.animate({left:-398},500,"linear");
+            allimg.eq(next).css({left:398,zIndex:z++}).animate({left:0})
+        }else if(next<now){
+            nowimg.animate({left:398},500,"linear");
+            allimg.eq(next).css({left:-398,zIndex:z++}).animate({left:0})
+        }
+        num=next;  //点击后继续从当前播
+        nowimg=allimg.eq(next)
+    })
+
+	
+	
+</script>
+<br>
+				<div class="oneright2rightda">
+							<div class="oneright2right" style="display:block">
+							<span class="index_tpyw">
+								<img src="__ROOT__/public/images/jianguanyaowen.png" style="border: 0">
+			
+							</span>
+								<div class="foutrighttops">
+					  <a href="__APP__/Listtype/index/typeId/1"><img src="__ROOT__/public/images/more.png"></a>
+						
+						</div>
+							<volist name="jgyw" id="v">
+								<div class="indexycxx" style="float:right;">
+									<a href="__APP__/News/index/id/{$v.id}" class="iewei">
+										<span class="ycxx01"></span>
+										<span class="ycxx02">
+										{$v.title|msubstr=0,15}
+										</span>
+										<if condition="$date elt $v['time']">
+										<img src="__ROOT__/public/vivo/new3.gif" alt="" class="img_new">
+										</if>
+								<span class="ycxx03">
+										{$v.dateandtime|msubstrda=0,10}
+										
+											
+											
+										</span>
+
+										<div class="clearfix"></div>
+									</a>	
+
+								</div>
+								
+							</volist>
+								
+							</div>
+					
+						</div>
+					
+			<div class="xuncha" style="position: relative;">
+				<img src="__ROOT__/public/images/cebian11.png.jpg">
+				<marquee style="position:absolute;top:90px;margin-left:25px; text-align: center;" behavior="" direction="up" width=145 height=280 scrollAmount=1>
+				<volist	name="mrxctb" id="v">
+				<p><a href="__APP__/News/index/id/{$v.id}">{$v.title}</a></p>
+				</volist>
+				</marquee>
+
+
+
+
+
+
+			</div>
+			<div class="clearfix"></div>
+			<div class="baoguangtai">
+				<div class="baoguangtai_tu"><img src="__ROOT__/public/images/baoguangtai.jpg"></div>
+				<div class="shangxialunbo">
+					<volist name="bgt" id="v">
+					<a href="__APP__/News/index/id/{$v.id}">{$v.title}</a>
+					</volist>
+				</div>
+				<div class="clearfix"></div>
+			</div>		
+				<div class="clearfix"></div>	
+</div>
+<style type="text/css">
+	 img{border:0;}
+</style>
+<div class="five_tu">
+	 <a href="http://10.1.1.88:8080/jcxxv"><img src="__ROOT__/public/images/jiansuojichu.jpg"></a>
+	<a href="http://10.94.60.175:8009/web"><img src="__ROOT__/public/images/xx.jpg" style="margin-left: 10px;"></a>
+	<a href="http://ztry.xz.ga"><img src="__ROOT__/public/images/zaitaorenyuan.jpg" style="margin-left: 10px;"></a>
+	 <a href="__APP__//Listtype/index/typeId/20"><img src="__ROOT__/public/images/xunchatongbao.jpg" style="margin-left: 10px;"></a>
+	 <a href="http://zyfw.ga/portal/"><img src="__ROOT__/public/images/yunsousuo.jpg" style="margin-left: 10px;"></a>
+	<div class="clearfix"></div>
+</div>
+<div class="index_zhong">			
+	<div style="width:797px;height:740px;clear:both;float:left;">
+		<div class="index_four">
+					<div class="index_fourleft">
+						<div class="foutlefttop">
+							<div class="foutlefttopz">
+								<img src="__ROOT__/public/images/1408.jpg" alt="">
+							</div>
+							<div class="foutrighttops">
+						  <a href="__APP__/Listtype/index/typeId/2"><img src="__ROOT__/public/images/more.png"></a>
+							
+							</div>
+							<div style="clear:both"></div>
+						</div>
+						<!-- 定位内容 -->
+						<div class="fbottoom">
+							<div class="lfoutleftbottom lrc_tz01" style="display:block">
+							<!-- 通知通报 -->
+							<volist name="tztb" id="v">
+							<div class="tztbcontent">
+								<div class="sanjiao"><img src="__ROOT__/public/images/anniu.png"></div>
+								<div class="sanjiaorighr">
+									<a href="__APP__/News/index/id/{$v.id}">
+									{$v.title|msubstr=0,20}
+									</a>
+								</div>
+								<div class="index_date" >{$v.dateandtime|msubstrda=0,10}
+										<if condition="$date elt $v['time']">
+										
+											<img src="__ROOT__/public/vivo/new3.gif" alt="" class="img_new" >
+											</if>
+								</div>
+							</div>
+
+							</volist>
+							</div>
+
+							
+						</div>	
+						<!-- 定位内容 -->
+					</div>
+					<div class="index_fourright">
+						<div class="foutlefttop">
+							<div class="foutlefttopz">
+								<img src="__ROOT__/public/images/jiansuodongtai.png" alt="">
+							</div>
+							<div class="foutrighttops">
+								<a href="__APP__/Listtype/index/typeId/3"><img src="__ROOT__/public/images/more.png" alt="通知"></a>
+							
+							</div>
+							<div style="clear:both"></div>		
+						</div>
+						<!-- 定位内容 -->
+						<div class="fbottoom">
+							<div class="foutleftbottom lrc_tz02" style="display:block">
+							<!-- 监所动态 -->
+							<volist name="jsdt" id="v">
+							<div class="tztbcontent">
+								<div class="sanjiao"><img src="__ROOT__/public/images/anniu.png"></div>
+								<div class="sanjiaorighr">
+									<a href="__APP__/News/index/id/{$v.id}">{$v.title|msubstr=0,20}
+									</a>
+								</div>
+								<div class="index_date" >{$v.dateandtime|msubstrda=0,10}
+									<if condition="$date elt $v['time']">
+											<img src="__ROOT__/public/vivo/new3.gif" alt="" class="img_new" >
+											</if>
+											</div>
+							</div>
+							</volist>
+						
+							</div>
+
+							
+						</div>
+						<!-- 定位内容 -->
+					</div>
+		</div><br>
+
+		<div class="index_four">
+					<div class="index_fourleft">
+						<div class="foutlefttop">
+							<div class="foutlefttopz">
+								<img src="__ROOT__/public/images/gongzuojianbao.jpg" alt="">
+							</div>
+							<div class="foutrighttops">
+						  <a href="__APP__//Listtype/index/typeId/4"><img src="__ROOT__/public/images/more.png"></a>
+							
+							</div>
+							<div style="clear:both"></div>
+						</div>
+						<!-- 定位内容 -->
+						<div class="fbottoom">
+							<div class="lfoutleftbottom lrc_tz01" style="display:block">
+							<!-- 工作简报 -->
+							<volist name="gzjb" id="v">
+							<div class="tztbcontent">
+								<div class="sanjiao"><img src="__ROOT__/public/images/anniu.png"></div>
+								<div class="sanjiaorighr">
+									<a href="__APP__/News/index/id/{$v.id}">{$v.title|msubstr=0,20}
+									</a>
+								</div>
+								<div class="index_date" >{$v.dateandtime|msubstrda=0,10}
+									<if condition="$date elt $v['time']">
+											<img src="__ROOT__/public/vivo/new3.gif" alt="" class="img_new" >
+											</if>
+
+									</div>
+							</div>
+							</volist>
+							
+							
+							</div>
+
+							
+						</div>	
+						<!-- 定位内容 -->
+					</div>
+					<div class="index_fourright">
+						<div class="foutlefttop">
+							<div class="foutlefttopz">
+								<img src="__ROOT__/public/images/1404.jpg" alt="" style="width: 174px;height: 45px;">
+							</div>
+							<div class="foutrighttops">
+								<a href="__APP__/Listtype/index/typeId/5"><img src="__ROOT__/public/images/more.png" alt="通知"></a>
+							
+							</div>
+							<div style="clear:both"></div>		
+						</div>
+						<!-- 定位内容 -->
+						<div class="fbottoom">
+							<div class="foutleftbottom lrc_tz02" style="display:block">
+							<volist name="jlsmdhj" id="v">
+							<div class="tztbcontent">
+								<div class="sanjiao"><img src="__ROOT__/public/images/anniu.png"></div>
+								<div class="sanjiaorighr">
+									<a href="__APP__/News/index/id/{$v.id}">{$v.title|msubstr=0,20}
+									</a>
+								</div>
+								<div class="index_date" >{$v.dateandtime|msubstrda=0,10}
+									<if condition="$date elt $v['time']">
+											<img src="__ROOT__/public/vivo/new3.gif" alt="" class="img_new" >
+											</if>
+
+										</div>
+							</div>
+							</volist>
+							
+							</div>
+
+							
+						</div>
+						<!-- 定位内容 -->
+					</div>
+		</div>
+
+		<div class="index_four">
+					<div class="index_fourleft">
+						<div class="foutlefttop">
+							<div class="foutlefttopz">
+								<img src="__ROOT__/public/images/shenwafanzui.png" alt="">
+							</div>
+							<div class="foutrighttops">
+						  <a href="__APP__/Listtype/index/typeId/6"><img src="__ROOT__/public/images/more.png"></a>
+							
+							</div>
+							<div style="clear:both"></div>
+						</div>
+						<!-- 定位内容 -->
+						<div class="fbottoom">
+							<div class="lfoutleftbottom lrc_tz01" style="display:block">
+							<volist name="ddbf" id="v">
+							<div class="tztbcontent">
+								<div class="sanjiao"><img src="__ROOT__/public/images/anniu.png"></div>
+								<div class="sanjiaorighr">
+									<a href="__APP__/News/index/id/{$v.id}">{$v.title|msubstr=0,20}
+									</a>
+								</div>
+								<div class="index_date" >{$v.dateandtime|msubstrda=0,10}
+									<if condition="$date elt $v['time']">
+											<img src="__ROOT__/public/vivo/new3.gif" alt="" class="img_new" >
+											</if>
+
+										</div>
+							</div>
+
+							</volist >
+							</div>
+
+							
+						</div>	
+						<!-- 定位内容 -->
+					</div>
+					<div class="index_fourright">
+						<div class="foutlefttop">
+							<div class="foutlefttopz">
+								<img src="__ROOT__/public/images/1407.jpg" alt="" style="width: 174px;height: 45px;">
+							</div>
+							<div class="foutrighttops">
+								<a href="__APP__/Listtype/index/typeId/7"><img src="__ROOT__/public/images/more.png" alt="通知"></a>
+							
+							</div>
+							<div style="clear:both"></div>		
+						</div>
+						<!-- 定位内容 -->
+						<div class="fbottoom">
+							<div class="foutleftbottom lrc_tz02" style="display:block">
+							<!-- 法律法规 -->
+							<volist name="flfg" id="v">
+							<div class="tztbcontent">
+								<div class="sanjiao"><img src="__ROOT__/public/images/anniu.png"></div>
+								<div class="sanjiaorighr">
+									<a href="__APP__/News/index/id/{$v.id}">{$v.title|msubstr=0,20}
+									</a>
+								</div>
+								<div class="index_date" >{$v.dateandtime|msubstrda=0,10}
+									<if condition="$date elt $v['time']">
+											<img src="__ROOT__/public/vivo/new3.gif" alt="" class="img_new" >
+											</if>
+
+
+										</div>
+							</div>
+
+							</volist>
+							</div>
+
+						
+						</div>
+						<!-- 定位内容 -->
+					</div>
+		</div>
+		</div>
+		<div style="width:200px;float:right;padding-top:10px;">
+			<div class="daojishi">
+				<img src="__ROOT__/public/images/xinxipaiming1.jpg" style="position:relative">
+				
+				<!-- <textarea></textarea> -->
+				
+				<span style="position:absolute;top:50px;left:15px;width:175px;">
+				<div style="font-size: 20px;"><span style="font-size:15px;">排名 &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;单位</span>
+
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size:15px;">采用</span>
+				
+				</div>
+				<volist	name="xxpm" id="v" key="k">
+				<div style="font-size: 20px;">
+				<a href="__APP__/Listtype/thin/userId/{$v.id}">
+				<span style="font-size:15px;"><span style="color: red;">&nbsp;&nbsp;{$k}</span> &nbsp;&nbsp; {$v.username|msubstr=0,6}</span>
+
+				&nbsp;<span style="font-size:15px;">{$v.count}</span>
+				</a>
+				</div>
+				
+				</volist>
+			
+				</span>
+			</div>
+			<div class="zhuanxiang_work">
+				<img src="__ROOT__/public/images/zxgz1.jpg" style="position:relative">
+				<!-- <textarea></textarea> -->
+				
+				<span style="position:absolute;top:50px;left:25px;width:150px;text-align: center">
+				<volist name="zxgz" id="k">
+				<div><a href="__APP__/News/index/id/{$k.id}">{$k.title|msubstr=0,6}</a></div>
+				</volist>
+
+
+				</span>
+			</div>
+			</div>
+		</div>	
+
+
+<div class="jianxing">
+		
+	<!--    <param name="movie" value="__ROOT__/public/vivo/123.swf">文件路径 
+	   <param name="wmode" value="opaque">透明（transparent）与不透明(opaque)
+	   <param name="quality" value="high" />可用可以不用，品质高低。不用，则默认自动高品质  -->
+		<!-- <embed height="129px"  width="1000px" src="__ROOT__/public/vivo/1700.swf" type="application/x-shockwave-flash" ></embed> -->
+		<embed width="1010;" height="189" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" quality="high" src="__ROOT__/public/vivo/1700.swf" style="margin-left: -5px;height: 189px;">
+	</div>
+	</div>
+<div class="index_zhong">
+	<div class="ge">			
+	<div class="index_four">
+				<div class="index_fourleft">
+					<div class="foutlefttop">
+						<div class="foutlefttopz">
+							<img src="__ROOT__/public/images/1409.jpg" alt="">
+						</div>
+						<div class="foutrighttops">
+					  <a href="__APP__/Listtype/index/typeId/8"><img src="__ROOT__/public/images/more.png"></a>
+						
+						</div>
+						<div style="clear:both"></div>
+					</div>
+					<!-- 定位内容 -->
+					<div class="fbottoom">
+						<div class="lfoutleftbottom lrc_tz01" style="display:block">
+						<!-- 医疗卫生 -->
+						<volist name="ylws" id="v">
+						<div class="tztbcontent">
+							<div class="sanjiao"><img src="__ROOT__/public/images/anniu.png"></div>
+							<div class="sanjiaorighr">
+								<a href="__APP__/News/index/id/{$v.id}">{$v.title|msubstr=0,20}
+								</a>
+							</div>
+							<div class="index_date">
+								{$v.dateandtime|msubstrda=0,10}
+									<if condition="$date elt $v['time']">
+											<img src="__ROOT__/public/vivo/new3.gif" alt="" class="img_new" >
+									</if>
+							</div>
+
+						</div>
+						</volist>						
+						
+						</div>
+
+						
+					</div>	
+					<!-- 定位内容 -->
+				</div>
+				<div class="index_fourright">
+					<div class="foutlefttop">
+						<div class="foutlefttopz">
+							<img src="__ROOT__/public/images/1410.jpg" alt="" style="width:174px;
+							height:45px;">
+						</div>
+						<div class="foutrighttops">
+							<a href="__APP__/Listtype/index/typeId/9"><img src="__ROOT__/public/images/more.png" alt="通知"></a>
+						
+						</div>
+						<div style="clear:both"></div>		
+					</div>
+					<!-- 定位内容 -->
+					<div class="fbottoom">
+						<div class="foutleftbottom lrc_tz02" style="display:block">
+						<!-- 安全大排查 -->
+						<volist	name="aqdpc" id="v">
+						<div class="tztbcontent">
+							<div class="sanjiao"><img src="__ROOT__/public/images/anniu.png"></div>
+							<div class="sanjiaorighr">
+								<a href="__APP__/News/index/id/{$v.id}">{$v.title|msubstr=0,20}
+								</a>
+							</div>
+							<div class="index_date" >{$v.dateandtime|msubstrda=0,10}
+								<if condition="$date elt $v['time']">
+											<img src="__ROOT__/public/vivo/new3.gif" alt="" class="img_new" >
+											</if>
+
+										</div>
+							
+						</div>
+						</volist>
+						<div class="foutrighttops">
+					  
+						
+						</div>
+						
+						
+						</div>
+
+					</div>
+					<!-- 定位内容 -->
+				</div>
+			</div>
+	<div class="index_four">
+				<div class="index_fourleft">
+					<div class="foutlefttop">
+						<div class="foutlefttopz">
+							<img src="__ROOT__/public/images/1412.jpg" alt="">
+						</div>
+						<div class="foutrighttops">
+					  <a href="__APP__/Listtype/index/typeId/10"><img src="__ROOT__/public/images/more.png"></a>
+						
+						</div>
+						<div style="clear:both"></div>
+					</div>
+					<!-- 定位内容 -->
+					<div class="fbottoom">
+						<div class="lfoutleftbottom lrc_tz01" style="display:block">
+						<volist name="swfz" id="v">
+						<div class="tztbcontent">
+							<div class="sanjiao"><img src="__ROOT__/public/images/anniu.png"></div>
+							<div class="sanjiaorighr">
+								<a href="__APP__/News/index/id/{$v.id}">{$v.title|msubstr=0,20}
+								</a>
+							</div>
+							<div class="index_date" >{$v.dateandtime|msubstrda=0,10}
+								<if condition="$date elt $v['time']">
+											<img src="__ROOT__/public/vivo/new3.gif" alt="" class="img_new" >
+											</if>
+
+										</div>
+						</div>
+
+						</volist >
+
+						</div>
+
+						
+					</div>	
+					<!-- 定位内容 -->
+				</div>
+
+				<div class="index_fourright">
+					<div class="foutlefttop">
+						<div class="foutlefttopz">
+							<img src="__ROOT__/public/images/1414.jpg" alt="" style="width: 174px;">
+						</div>
+						<div class="foutrighttops">
+							<a href="__APP__/Listtype/index/typeId/11"><img src="__ROOT__/public/images/more.png" alt="通知"></a>
+						
+						</div>
+						<div style="clear:both"></div>		
+					</div>
+					<!-- 定位内容 -->
+					<div class="fbottoom">
+						<div class="foutleftbottom lrc_tz02" style="display:block">
+						<!-- 党校与支部工作 -->
+						<volist name="dxgz" id="v">
+						<div class="tztbcontent">
+							<div class="sanjiao"><img src="__ROOT__/public/images/anniu.png"></div>
+							<div class="sanjiaorighr">
+								<a href="__APP__/News/index/id/{$v.id}">{$v.title|msubstr=0,20}
+								</a>
+							</div>
+							<div class="index_date" >{$v.dateandtime|msubstrda=0,10}
+								<if condition="$date elt $v['time']">
+											<img src="__ROOT__/public/vivo/new3.gif" alt="" class="img_new" >
+											</if>
+
+
+										</div>
+						</div>
+						</volist>
+						</div>
+
+					</div>
+					<!-- 定位内容 -->
+				</div>
+			</div>
+	<div class="index_four">
+				<div class="index_fourleft">
+					<div class="foutlefttop">
+						<div class="foutlefttopz">
+							<img src="__ROOT__/public/images/1413.jpg" alt="" style="width: 174px;">
+						</div>
+						<div class="foutrighttops">
+					  <a href="__APP__/Listtype/index/typeId/12"><img src="__ROOT__/public/images/more.png"></a>
+						
+						</div>
+						<div style="clear:both"></div>
+					</div>
+					<!-- 定位内容 -->
+					<div class="fbottoom">
+						<div class="lfoutleftbottom lrc_tz01" style="display:block">
+						<!-- 监管先典型 -->
+						<volist name="jgdx" id="v">
+						<div class="tztbcontent">
+							<div class="sanjiao"><img src="__ROOT__/public/images/anniu.png"></div>
+							<div class="sanjiaorighr">
+								<a href="__APP__/News/index/id/{$v.id}">{$v.title|msubstr=0,20}
+								</a>
+							</div>
+							<div class="index_date" >{$v.dateandtime|msubstrda=0,10}
+									<if condition="$date elt $v['time']">
+											<img src="__ROOT__/public/vivo/new3.gif" alt="" class="img_new" >
+											</if>
+							</div>
+						</div>
+						</volist>
+						</div>
+
+					
+
+					</div>	
+					<!-- 定位内容 -->
+				</div>
+				<div class="index_fourright">
+					<div class="foutlefttop">
+						<div class="foutlefttopz">
+							<img src="__ROOT__/public/images/tashanzhishi.jpg" alt="" style="width: 174px;">
+						</div>
+						<div class="foutrighttops">
+							<a href="__APP__/Listtype/index/typeId/13"><img src="__ROOT__/public/images/more.png" alt="通知"></a>
+						
+						</div>
+						<div style="clear:both"></div>		
+					</div>
+					<!-- 定位内容 -->
+					<div class="fbottoom">
+						<div class="foutleftbottom lrc_tz02" style="display:block">
+						<!-- 他山之石 -->
+						<volist name="tszs" id="v">
+						<div class="tztbcontent">
+							<div class="sanjiao"><img src="__ROOT__/public/images/anniu.png"></div>
+							<div class="sanjiaorighr">
+								<a href="__APP__/News/index/id/{$v.id}">{$v.title|msubstr=0,20}
+								</a>
+							</div>
+							<div class="index_date" >{$v.dateandtime|msubstrda=0,10}
+									<if condition="$date elt $v['time']">
+											<img src="__ROOT__/public/vivo/new3.gif" alt="" class="img_new" >
+					       </if>										
+							</div>
+						</div>
+						</volist>
+						</div>
+
+			
+					</div>
+					<!-- 定位内容 -->
+				</div>
+			</div>
+			</div>
+		
+		<div class="mei" style="position:relative;">
+			<a href="__ROOT__/admin.php"><img src="__ROOT__/public/images/wangshangtougao.png"></a>
+			<a href="__APP__/Serach/index"><img src="__ROOT__/public/images/zhanneisousuo2.png"></a>
+			<img src="__ROOT__/public/images/xitongshezhi.png">
+			<img src="__ROOT__/public/images/xinxichaxun.png" onmousemove="chenges();">
+
+			<div  id="img1" class="tit" onmousemove="chenges();"  >
+			<ul class="mei_list"  onmouseout="chengesd();">
+				<li><a href="http://10.1.1.88:8080/jcxxv/">全国公安监所基础信息管理系统</a></li>
+				<li><a href="http://10.94.60.175:8009/web">违法犯罪人员信息系统</a></li>
+				<li><a href="http://ztry.xz.ga">全国在逃人员信息系统</a></li>
+				<li><a href="http://www.jgzd.sx/">全市巡查通报</a></li>
+				<li><a href="http://zyfw.ga/portal/">公安云搜索</a></li>
+				
+				
+			</ul>
+			</div>
+
+			<!-- <img src="__ROOT__/public/images/xinxipaiming.png"> -->
+			<div class="zhuanxiang_work">
+				<img src="__ROOT__/public/images/ddbf.jpg" style="position:relative">
+				<span style="position:absolute;top:50px;left:25px;width:150px;text-align: center">
+				<volist name="dundianbangdu" id="u">
+				<div><a href="__APP__/News/index/id/{$u.id}">{$u.title|msubstr=0,20}</a></div>
+				</volist>
+
+				</span>
+			</div>
+			<div class="clearfix"></div> 
+			<div class="zhuanxiang_work">
+				<img src="__ROOT__/public/images/fwzc.jpg" style="position:relative">
+				<span style="position:absolute;top:50px;left:25px;width:150px;text-align: center">
+				<volist name="fwzc" id="u">
+				<div><a href="__APP__/News/index/id/{$u.id}">{$u.title|msubstr=0,7}</a></div>
+				</volist>
+
+				</span>
+			</div>
+			<div class="clearfix"></div> 	
+		</div>
+
+		<script>
+		var obj = document.getElementById('img1')
+			function chenges(){
+				obj.className="tit1"
+			}
+			function chengesd(){
+				obj.className="tit"
+			}
+		</script>
+			<div class="clearfix"></div> 
+			</div>
+<div class="xiala">
+	<select style="margin-left: 35px;" onchange="s_click3(this)">
+	
+		<option>全国监管导航</option>
+	  	<volist name="arrdd" id="v">
+	   <option value="{$v.imagepath}">{$v.title}</option>
+	   </volist>
+	</select>
+	<select style="margin-left: 20px;" onchange="s_click1(this)">
+		<option>省内监管导航</option>
+	   <volist name="arraa" id="v">
+	   <option value="{$v.imagepath}">{$v.title}</option>
+	   </volist>
+	</select>
+	<select style="margin-left: 20px;" onchange="s_click2(this)">
+		<option>市内监管导航</option>
+	   <volist name="arrbb" id="v">
+	   <option value="{$v.imagepath}">{$v.title}</option>
+	   </volist>
+	</select>
+	<select style="margin-left: 20px;" onchange="s_click4(this)">
+		<option>省内市局导航</option>
+	   <volist name="arrcc" id="v">
+	   <option value="{$v.imagepath}">{$v.title}</option>
+	   </volist>
+	</select>
+	<select style="margin-left: 20px;" onchange="s_click5(this)">
+		<option>推荐监管链接</option>
+	   <volist name="arree" id="v">
+	   <option value="{$v.imagepath}">{$v.title}</option>
+	   </volist>
+	</select>
+	
+</div>
+<div class="button_xian">
+	
+</div>
+<div class="copyright">
+	版权所有：晋中市公安监管支队   <span style="color: yellow;"><a href="http://10.97.83.200:8080/web/">进入旧版</a></span>
+</div>									
+</body>
+</html>
+JS代码
+   <script type="text/javascript">
+        //select跳页
+        function s_click1(obj) {
+            var num = 0;
+            for (var i = 0; i < obj.options.length; i++) {
+                if (obj.options[i].selected == true) {
+                    num++;
+                }
+            }
+            if (num == 1) {
+                var url = obj.options[obj.selectedIndex].value;
+                window.open(url); //这里修改打开连接方式
+            }
+        }
+          function s_click2(obj) {
+            var num = 0;
+            for (var i = 0; i < obj.options.length; i++) {
+                if (obj.options[i].selected == true) {
+                    num++;
+                }
+            }
+            if (num == 1) {
+                var url = obj.options[obj.selectedIndex].value;
+                window.open(url); //这里修改打开连接方式
+            }
+        }
+          function s_click3(obj) {
+            var num = 0;
+            for (var i = 0; i < obj.options.length; i++) {
+                if (obj.options[i].selected == true) {
+                    num++;
+                }
+            }
+            if (num == 1) {
+                var url = obj.options[obj.selectedIndex].value;
+                window.open(url); //这里修改打开连接方式
+            }
+        }
+          function s_click4(obj) {
+            var num = 0;
+            for (var i = 0; i < obj.options.length; i++) {
+                if (obj.options[i].selected == true) {
+                    num++;
+                }
+            }
+            if (num == 1) {
+                var url = obj.options[obj.selectedIndex].value;
+                window.open(url); //这里修改打开连接方式
+            }
+        }
+          function s_click5(obj) {
+            var num = 0;
+            for (var i = 0; i < obj.options.length; i++) {
+                if (obj.options[i].selected == true) {
+                    num++;
+                }
+            }
+            if (num == 1) {
+                var url = obj.options[obj.selectedIndex].value;
+                window.open(url); //这里修改打开连接方式
+            }
+        }
+    </script>
